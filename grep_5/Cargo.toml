@@ -1,0 +1,10 @@
+[package]
+name = "grep_5"
+version = "0.1.0"
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+rayon = "1.5.1"
+structopt = "0.3.21"
