@@ -4,14 +4,14 @@ use structopt::StructOpt;
 
 #[derive(StructOpt)]
 #[structopt(name = "rsgrep")]
-struct MyGrep {
+struct GrepArgs {
     #[structopt(name = "PATTERN")]
     pattern: String,
     #[structopt(name = "FILE")]
     path: Vec<String>,
 }
 
-fn grep(state: &MyGrep, content: String, file_name: &str) {
+fn grep(state: &GrepArgs, content: String, file_name: &str) {
     for line in content.lines() {
         if line.contains(state.pattern.as_str()) {
             println!("{}: {}", file_name, line);
@@ -19,7 +19,7 @@ fn grep(state: &MyGrep, content: String, file_name: &str) {
     }
 }
 
-fn run(state: MyGrep) {
+fn run(state: GrepArgs) {
     state
         .path
         .par_iter()
@@ -30,5 +30,5 @@ fn run(state: MyGrep) {
 }
 
 fn main() {
-    run(MyGrep::from_args());
+    run(GrepArgs::from_args());
 }

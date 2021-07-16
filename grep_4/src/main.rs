@@ -21,7 +21,7 @@ fn grep(state: &GrepArgs, content: String, file_name: &str) {
 fn run(state: GrepArgs) {
     for file in state.path.iter() {
         match read_to_string(file) {
-            Ok(content) => grep(&state, content, &file),
+            Ok(content) => grep(&state, content, file),
             Err(reason) => println!("{}", reason),
         }
     }
