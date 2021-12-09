@@ -2,11 +2,13 @@
 members = [
     "cat_1",
     "cat_2",
+    "explain_move",
     "grep_1",
     "grep_2",
     "grep_3",
     "grep_4",
     "grep_5",
+    "grep_6",
     "step_1",
     "step_2",
     "step_3",

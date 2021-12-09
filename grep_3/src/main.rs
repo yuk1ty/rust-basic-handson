@@ -6,21 +6,21 @@ use structopt::StructOpt;
 struct GrepArgs {
     #[structopt(name = "PATTERN")]
     pattern: String,
-    #[structopt(name = "FILE")]
+    #[structopt(name = "PATTERN")]
     path: String,
 }
 
-fn grep(state: &GrepArgs, content: String) {
+fn grep(pattern: String, content: String) {
     for line in content.lines() {
-        if line.contains(state.pattern.as_str()) {
+        if line.contains(pattern.as_str()) {
             println!("{}", line);
         }
     }
 }
 
 fn run(state: GrepArgs) {
-    match read_to_string(&state.path) {
-        Ok(content) => grep(&state, content),
+    match read_to_string(state.path) {
+        Ok(content) => grep(state.pattern, content),
         Err(reason) => println!("{}", reason),
     }
 }
