@@ -1,4 +1,3 @@
-use std::env::args;
 use std::fs::read_to_string;
 
 fn run_cat(path: String) {
@@ -9,11 +8,8 @@ fn run_cat(path: String) {
 }
 
 fn main() {
-    if let Some(path) = args().nth(1) {
-        run_cat(path)
+    match std::env::args().nth(1) {
+        Some(path) => run_cat(path),
+        None => println!("No path is specified!"),
     }
-    // match args().nth(1) {
-    //     Some(path) => run_cat(path),
-    //     None => println!("No path is specified!"),
-    // }
 }
