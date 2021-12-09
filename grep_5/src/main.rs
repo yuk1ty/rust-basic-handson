@@ -1,4 +1,5 @@
 use std::fs::read_to_string;
+
 use structopt::StructOpt;
 
 #[derive(StructOpt)]
@@ -10,18 +11,18 @@ struct GrepArgs {
     path: Vec<String>,
 }
 
-fn grep(state: &GrepArgs, content: String, file_name: &str) {
+fn grep(state: &GrepArgs, content: String) {
     for line in content.lines() {
         if line.contains(state.pattern.as_str()) {
-            println!("{}: {}", file_name, line);
+            println!("{}", line);
         }
     }
 }
 
 fn run(state: GrepArgs) {
-    for file in state.path.iter() {
-        match read_to_string(file) {
-            Ok(content) => grep(&state, content, file),
+    for path in state.path.iter() {
+        match read_to_string(path) {
+            Ok(content) => grep(&state, content),
             Err(reason) => println!("{}", reason),
         }
     }
